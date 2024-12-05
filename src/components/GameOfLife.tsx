@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GridState from "./GridState.ts";
+import GridAdapter from "./GridAdapter.ts";
+import GridObserver from "./GridObserver.ts";
 
 const GameOfLife: React.FC = () => {
   const gridState = GridState.getInstance(10, 10);

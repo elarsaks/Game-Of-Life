@@ -1,4 +1,4 @@
-class GridObserver {
+export default class GridObserver {
   private observers: (() => void)[] = [];
 
   subscribe(callback: () => void) {

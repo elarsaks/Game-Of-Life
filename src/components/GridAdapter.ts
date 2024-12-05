@@ -1,4 +1,6 @@
-class GridAdapter {
+import GridState from "./GridState";
+
+export default class GridAdapter {
   private gridState: GridState;
 
   constructor(gridState: GridState) {

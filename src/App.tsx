@@ -5,7 +5,9 @@ import GameOfLife from "./components/GameOfLife";
 function App() {
   return (
     <div className="App">
-      <GameOfLife />
+      <div className="center">
+        <GameOfLife />
+      </div>
     </div>
   );
 }
