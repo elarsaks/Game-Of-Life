@@ -1,5 +1,6 @@
 {
-  "name": "temp-app",
+  "name": "game-of-life",
+  "homepage": "https://elarsaks.github.io/Game-Of-Life/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
