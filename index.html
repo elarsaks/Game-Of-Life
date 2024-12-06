@@ -9,13 +9,13 @@
 <body>
     <div id="content-container">
         <h1>Conway's Game of Life</h1>
+        <canvas id="gameCanvas"></canvas>
         <div class="controls">
-            <button id="startBtn">Start</button>
-            <button id="pauseBtn">Pause</button>
-            <button id="randomBtn">Randomize</button>
-            <button id="clearBtn">Clear</button>
+            <button id="startBtn" class="ctrl-btn">Start</button>
+            <button id="pauseBtn" class="ctrl-btn">Pause</button>
+            <button id="randomBtn" class="ctrl-btn">Randomize</button>
+            <button id="clearBtn" class="ctrl-btn">Clear</button>
         </div>
-        <canvas id="gameCanvas" width="500" height="500"></canvas>
     </div>
     <script src="app.js"></script>                  <!-- Main App -->
     <script src="./src/Board.js"></script>          <!-- Game Logic -->
