@@ -24,10 +24,8 @@ canvas {
 
 .controls {
     display: flex;
-    justify-content: center; 
-    flex-wrap: wrap; 
-    gap: 10px; 
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 .ctrl-btn, #strategySelect {
@@ -41,7 +39,20 @@ canvas {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     flex: 1 0 auto; 
-    max-width: 120px;
+
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    max-width: 120px; 
+    display: inline-block;
+    max-width: 150px;
+}
+
+@media (max-width: 500px) {
+    .ctrl-btn, #strategySelect {
+        padding: 5px 10px;
+        max-width: 100px;
+    }
 }
 
 /* Hover and active effects */
