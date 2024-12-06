@@ -5,6 +5,9 @@ class RulesStrategy {
   // Given the board and a position, calculates the next state of that cell
   // This is an interface method to be overridden.
   nextCellState(board, x, y) {
+    const cell = board.getCell(x, y);
+    const neighbors = board.getAliveNeighborCount(x, y);
+
     throw "Not Implemented";
   }
 }

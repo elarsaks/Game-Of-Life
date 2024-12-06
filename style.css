@@ -23,6 +23,10 @@ canvas {
 }
 
 .controls {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 10px; 
     margin-bottom: 20px;
 }
 
@@ -36,6 +40,8 @@ canvas {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    flex: 1 0 auto; 
+    max-width: 120px;
 }
 
 /* Hover and active effects */
