@@ -7,7 +7,14 @@
     <style>
       body {
           font-family: Arial, sans-serif;
-          margin: 20px;
+          margin: 0;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      #content-container {
+          text-align: center;
       }
       canvas {
           border: 1px solid #ccc;
@@ -20,14 +27,16 @@
     </style>
 </head>
 <body>
-    <h1>Conway's Game of Life</h1>
-    <div class="controls">
-      <button id="startBtn">Start</button>
-      <button id="pauseBtn">Pause</button>
-      <button id="randomBtn">Randomize</button>
-      <button id="clearBtn">Clear</button>
+    <div id="content-container">
+        <h1>Conway's Game of Life</h1>
+        <div class="controls">
+            <button id="startBtn">Start</button>
+            <button id="pauseBtn">Pause</button>
+            <button id="randomBtn">Randomize</button>
+            <button id="clearBtn">Clear</button>
+        </div>
+        <canvas id="gameCanvas" width="500" height="500"></canvas>
     </div>
-    <canvas id="gameCanvas" width="500" height="500"></canvas>
     <script src="app.js"></script>
 </body>
 </html>
