@@ -4,6 +4,8 @@
 
 This repository is an implementation of **Conway's Game of Life**, a classic cellular automaton devised by mathematician John Conway. The project is built using HTML, CSS, and JavaScript, and demonstrates various software design patterns for maintainability and scalability.
 
+**[Live Demo](https://elarsaks.github.io/Game-Of-Life/)**
+
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
