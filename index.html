@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game of Life</title>
-  <style>
-    .grid { display: grid; }
-    .cell {
-      width: 20px;
-      height: 20px;
-      border: 1px solid #ddd;
-    }
-    .alive { background-color: black; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conway's Game of Life (Learning Project)</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+      }
+      canvas {
+          border: 1px solid #ccc;
+          display: block;
+          margin-bottom: 20px;
+      }
+      .controls {
+          margin-bottom: 10px;
+      }
+    </style>
 </head>
 <body>
-  <button id="next">Next Step</button>
-  <div id="grid"></div>
-
-  <script src="app.js"></script>
+    <h1>Conway's Game of Life</h1>
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="randomBtn">Randomize</button>
+      <button id="clearBtn">Clear</button>
+    </div>
+    <canvas id="gameCanvas" width="500" height="500"></canvas>
+    <script src="app.js"></script>
 </body>
 </html>
