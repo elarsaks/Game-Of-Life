@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rows = Math.floor(canvasHeight / CELL_HEIGHT) + 1;
   const cols = Math.floor(canvasWidth / CELL_HEIGHT) + 1;
 
+  // TODO: Take this into games state
   const strategies = {
     classicConway: new ClassicConwayStrategy(),
     dayAndNight: new DayAndNightStrategy(),
@@ -39,10 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const displayObserver = new DisplayObserver(adapter);
   board.addObserver(displayObserver);
 
+  // TODO: Go through game staring process
   const game = new Game();
   game.init(board);
   game.strategy = strategies.classicConway;
   board.notifyObservers();
+  game.randomize();
+  game.start(150);
 
   const buttonActions = {
     startBtn: () => game.start(150),
@@ -66,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       game.strategy = selectedStrategy;
       game.randomize();
       board.notifyObservers();
+      game.start(150);
     } else {
       console.error("Invalid strategy selected:", event.target.value);
     }
