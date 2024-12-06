@@ -3,14 +3,29 @@
 // ============================================================================
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("gameCanvas");
+  const strategySelect = document.getElementById("strategySelect");
+
+  const CELL_HEIGHT = 10;
   const canvasHeight = window.innerHeight * 0.8;
   const canvasWidth = window.innerWidth;
   canvas.height = canvasHeight;
   canvas.width = canvasWidth;
 
-  const cellHeight = 10;
-  const rows = Math.floor(canvasHeight / cellHeight) + 1;
-  const cols = Math.floor(canvasWidth / cellHeight) + 1;
+  const rows = Math.floor(canvasHeight / CELL_HEIGHT) + 1;
+  const cols = Math.floor(canvasWidth / CELL_HEIGHT) + 1;
+
+  const strategies = {
+    classicConway: new ClassicConwayStrategy(),
+    dayAndNight: new DayAndNightStrategy(),
+    diamoeba: new DiamoebaStrategy(),
+    highLife: new HighLifeStrategy(),
+    lifeWithoutDeath: new LifeWithoutDeathStrategy(),
+    maze: new MazeStrategy(),
+    replicator: new ReplicatorStrategy(),
+    seeds: new SeedsStrategy(),
+    twoByTwo: new TwoByTwoStrategy(),
+    vote: new VoteStrategy(),
+  };
 
   // Use a builder to create the initial board
   const board = new BoardBuilder()
@@ -20,33 +35,58 @@ document.addEventListener("DOMContentLoaded", () => {
     .build();
 
   // Create an adapter for rendering
-  const adapter = new CanvasAdapter(canvas, 10);
-
-  // Add an observer for the board to redraw when updated
+  const adapter = new CanvasAdapter(canvas, CELL_HEIGHT);
   const displayObserver = new DisplayObserver(adapter);
   board.addObserver(displayObserver);
 
-  // Create or get the singleton game instance
   const game = new Game();
   game.init(board);
-  // TODO: Replace initial draw with randomize
-  // board.notifyObservers(); // initial draw
-  game.randomize();
+  game.strategy = strategies.classicConway;
+  board.notifyObservers();
 
-  // Controls
-  document.getElementById("startBtn").addEventListener("click", () => {
-    game.start(200);
+  const buttonActions = {
+    startBtn: () => game.start(150),
+    pauseBtn: () => game.pause(),
+    randomBtn: () => game.randomize(),
+    clearBtn: () => game.clear(),
+  };
+
+  Object.keys(buttonActions).forEach((id) => {
+    const button = document.getElementById(id);
+    if (button) {
+      button.addEventListener("click", buttonActions[id]);
+    } else {
+      console.warn(`Button with ID '${id}' not found.`);
+    }
   });
 
-  document.getElementById("pauseBtn").addEventListener("click", () => {
-    game.pause();
+  strategySelect.addEventListener("change", (event) => {
+    const selectedStrategy = strategies[event.target.value];
+    if (selectedStrategy) {
+      game.strategy = selectedStrategy;
+      game.randomize();
+      board.notifyObservers();
+    } else {
+      console.error("Invalid strategy selected:", event.target.value);
+    }
   });
 
-  document.getElementById("randomBtn").addEventListener("click", () => {
-    game.randomize();
-  });
+  window.addEventListener("resize", () => {
+    const canvasHeight = window.innerHeight * 0.8;
+    const canvasWidth = window.innerWidth;
+    canvas.height = canvasHeight;
+    canvas.width = canvasWidth;
 
-  document.getElementById("clearBtn").addEventListener("click", () => {
-    game.clear();
+    const rows = Math.floor(canvasHeight / CELL_HEIGHT) + 1;
+    const cols = Math.floor(canvasWidth / CELL_HEIGHT) + 1;
+
+    const newBoard = new BoardBuilder()
+      .setRows(rows)
+      .setCols(cols)
+      .setInitializer(() => CellFactory.createDeadCell())
+      .build();
+
+    game.init(newBoard);
+    board.notifyObservers();
   });
 });

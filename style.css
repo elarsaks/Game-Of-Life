@@ -26,7 +26,7 @@ canvas {
     margin-bottom: 20px;
 }
 
-.ctrl-btn {
+.ctrl-btn, #strategySelect {
     padding: 10px 15px;
     margin: 0 5px;
     border: 2px solid rgb(255, 247, 0);
@@ -38,14 +38,33 @@ canvas {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.ctrl-btn:hover {
+/* Hover and active effects */
+.ctrl-btn:hover, #strategySelect:hover {
     background-color: rgb(255, 247, 0);
     color: black;
 }
 
-.ctrl-btn:active {
+.ctrl-btn:active, #strategySelect:active {
     transform: scale(0.95);
 }
+
+/* Dropdown arrow styling for modern browsers */
+#strategySelect {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5H7z' fill='%23fff'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+/* Optional: Style dropdown options */
+#strategySelect option {
+    background-color: black;
+    color: rgb(255, 247, 0);
+}
+
 
 a{
     color: rgb(255, 255, 255);
@@ -55,3 +74,4 @@ a{
 a:hover {
     color: rgb(89, 197, 251);
 }
+
