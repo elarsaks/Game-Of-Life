@@ -20,6 +20,7 @@ class Game {
 
   start(speed = 200) {
     if (this.interval) return; // Already running
+
     this.interval = setInterval(() => {
       this.tick();
     }, speed);
