@@ -23,7 +23,7 @@ canvas {
 }
 
 .controls {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .ctrl-btn {
@@ -45,4 +45,13 @@ canvas {
 
 .ctrl-btn:active {
     transform: scale(0.95);
+}
+
+a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(89, 197, 251);
 }

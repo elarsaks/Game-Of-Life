@@ -3,7 +3,7 @@
 // ============================================================================
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("gameCanvas");
-  const canvasHeight = window.innerHeight * 0.85;
+  const canvasHeight = window.innerHeight * 0.8;
   const canvasWidth = window.innerWidth;
   canvas.height = canvasHeight;
   canvas.width = canvasWidth;
