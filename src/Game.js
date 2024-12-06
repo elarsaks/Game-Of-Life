@@ -9,13 +9,26 @@ class Game {
     Game.instance = this;
 
     this.board = null;
-    this.strategy = new ClassicConwayStrategy();
+    this.strategy = null;
+    this.strategies = {
+      classicConway: new ClassicConwayStrategy(),
+      dayAndNight: new DayAndNightStrategy(),
+      diamoeba: new DiamoebaStrategy(),
+      highLife: new HighLifeStrategy(),
+      lifeWithoutDeath: new LifeWithoutDeathStrategy(),
+      maze: new MazeStrategy(),
+      replicator: new ReplicatorStrategy(),
+      seeds: new SeedsStrategy(),
+      twoByTwo: new TwoByTwoStrategy(),
+      vote: new VoteStrategy(),
+    };
     this.interval = null;
     return this;
   }
 
   init(board) {
     this.board = board;
+    this.strategy = this.strategies.classicConway; // Default strategy
   }
 
   start(speed = 200) {
@@ -32,14 +45,15 @@ class Game {
   }
 
   tick() {
-    if (!this.board) return;
+    if (!this.board || !this.strategy) return;
     this.board.update(this.strategy);
   }
 
   randomize() {
     for (let y = 0; y < this.board.rows; y++) {
       for (let x = 0; x < this.board.cols; x++) {
-        const alive = Math.random() < 0.3;
+        // TODO: configure the probability of a cell being alive based on the strategy
+        const alive = Math.random() < 0.1;
         this.board.setCell(
           x,
           y,
@@ -50,12 +64,8 @@ class Game {
     this.board.notifyObservers();
   }
 
-  clear() {
-    for (let y = 0; y < this.board.rows; y++) {
-      for (let x = 0; x < this.board.cols; x++) {
-        this.board.setCell(x, y, CellFactory.createDeadCell());
-      }
-    }
+  setStrategy(strategyKey) {
+    this.strategy = this.strategies[strategyKey];
     this.board.notifyObservers();
   }
 }

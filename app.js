@@ -14,84 +14,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const rows = Math.floor(canvasHeight / CELL_HEIGHT) + 1;
   const cols = Math.floor(canvasWidth / CELL_HEIGHT) + 1;
 
-  // TODO: Take this into games state
-  const strategies = {
-    classicConway: new ClassicConwayStrategy(),
-    dayAndNight: new DayAndNightStrategy(),
-    diamoeba: new DiamoebaStrategy(),
-    highLife: new HighLifeStrategy(),
-    lifeWithoutDeath: new LifeWithoutDeathStrategy(),
-    maze: new MazeStrategy(),
-    replicator: new ReplicatorStrategy(),
-    seeds: new SeedsStrategy(),
-    twoByTwo: new TwoByTwoStrategy(),
-    vote: new VoteStrategy(),
-  };
-
-  // Use a builder to create the initial board
   const board = new BoardBuilder()
     .setRows(rows)
     .setCols(cols)
     .setInitializer(() => CellFactory.createDeadCell())
     .build();
 
-  // Create an adapter for rendering
   const adapter = new CanvasAdapter(canvas, CELL_HEIGHT);
   const displayObserver = new DisplayObserver(adapter);
   board.addObserver(displayObserver);
 
-  // TODO: Go through game staring process
   const game = new Game();
   game.init(board);
-  game.strategy = strategies.classicConway;
-  board.notifyObservers();
+  board.notifyObservers(); // Initial draw
   game.randomize();
   game.start(150);
 
   const buttonActions = {
+    randomizeBtn: () => game.randomize(),
     startBtn: () => game.start(150),
     pauseBtn: () => game.pause(),
-    randomBtn: () => game.randomize(),
-    clearBtn: () => game.clear(),
   };
 
   Object.keys(buttonActions).forEach((id) => {
     const button = document.getElementById(id);
-    if (button) {
-      button.addEventListener("click", buttonActions[id]);
-    } else {
-      console.warn(`Button with ID '${id}' not found.`);
-    }
+    button.addEventListener("click", buttonActions[id]);
   });
 
   strategySelect.addEventListener("change", (event) => {
-    const selectedStrategy = strategies[event.target.value];
-    if (selectedStrategy) {
-      game.strategy = selectedStrategy;
-      game.randomize();
-      board.notifyObservers();
-      game.start(150);
-    } else {
-      console.error("Invalid strategy selected:", event.target.value);
-    }
-  });
-
-  window.addEventListener("resize", () => {
-    const canvasHeight = window.innerHeight * 0.8;
-    const canvasWidth = window.innerWidth;
-    canvas.height = canvasHeight;
-    canvas.width = canvasWidth;
-
-    const rows = Math.floor(canvasHeight / CELL_HEIGHT) + 1;
-    const cols = Math.floor(canvasWidth / CELL_HEIGHT) + 1;
-
-    const newBoard = new BoardBuilder()
-      .setRows(rows)
-      .setCols(cols)
-      .setInitializer(() => CellFactory.createDeadCell())
-      .build();
-
-    game.init(newBoard);
-    board.notifyObservers();
+    game.setStrategy(event.target.value);
   });
 });
