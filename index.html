@@ -4,27 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Conway's Game of Life (Learning Project)</title>
-    <style>
-      body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-      #content-container {
-          text-align: center;
-      }
-      canvas {
-          border: 1px solid #ccc;
-          display: block;
-          margin-bottom: 20px;
-      }
-      .controls {
-          margin-bottom: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="content-container">
@@ -37,6 +17,14 @@
         </div>
         <canvas id="gameCanvas" width="500" height="500"></canvas>
     </div>
-    <script src="app.js"></script>
+    <script src="app.js"></script>                  <!-- Main App -->
+    <script src="./src/Board.js"></script>          <!-- Game Logic -->
+    <script src="./src/BoardBuilder.js"></script>   <!-- Builder Pattern -->
+    <script src="./src/CanvasAdapter.js"></script>  <!-- Adapter Pattern -->
+    <script src="./src/Cell.js"></script>           <!-- State Pattern -->
+    <script src="./src/CellFactory.js"></script>    <!-- Factory Pattern -->
+    <script src="./src/Game.js"></script>           <!-- Singelton Pattern -->
+    <script src="./src/Observer.js"></script>       <!-- Observer Pattern -->
+    <script src="./src/Strategy.js"></script>       <!-- Strategy Pattern -->
 </body>
 </html>
